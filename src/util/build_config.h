@@ -59,6 +59,8 @@
 #elif defined(__MVS__)
 #include "zos-base.h"
 #define OS_ZOS 1
+#elif defined(__onyx__)
+#define OS_ONYX 1
 #else
 #error Please add support for your platform in build_config.h
 #endif
@@ -77,13 +79,14 @@
     defined(OS_FREEBSD) || defined(OS_LINUX) || defined(OS_MACOSX) || \
     defined(OS_NACL) || defined(OS_NETBSD) || defined(OS_OPENBSD) ||  \
     defined(OS_QNX) || defined(OS_SOLARIS) || defined(OS_HAIKU) || \
-    defined(OS_MSYS) || defined(OS_ZOS)
+    defined(OS_MSYS) || defined(OS_ZOS) || defined(OS_ONYX)
 #define OS_POSIX 1
 #endif
 
 // Use tcmalloc
 #if (defined(OS_WIN) || defined(OS_LINUX) || defined(OS_ANDROID)) && \
     !defined(NO_TCMALLOC)
+// TODO(onyx): Probably a good idea to port tcmalloc too
 #define USE_TCMALLOC 1
 #endif
 
